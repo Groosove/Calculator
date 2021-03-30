@@ -51,24 +51,6 @@
                                     <action selector="Buttons:" destination="MXG-Gg-3p4" eventType="touchUpInside" id="0MB-mR-czs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avc-UY-7z4">
-                                <rect key="frame" x="305" y="610" width="75" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
-                                <state key="normal" title="−">
-                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                    <color key="titleShadowColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="36"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="Buttons:" destination="MXG-Gg-3p4" eventType="touchUpInside" id="d8C-ik-Fl4"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzI-Oz-QDY">
                                 <rect key="frame" x="305" y="693" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -329,7 +311,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXo-HI-4Re">
-                                <rect key="frame" x="122" y="527" width="75" height="75"/>
+                                <rect key="frame" x="123" y="527" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -347,7 +329,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFY-xM-iW1">
-                                <rect key="frame" x="305" y="776" width="75" height="75"/>
+                                <rect key="frame" x="304" y="776" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
@@ -364,13 +346,49 @@
                                     <action selector="Buttons:" destination="MXG-Gg-3p4" eventType="touchUpInside" id="cam-B1-Sf4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avc-UY-7z4">
+                                <rect key="frame" x="305" y="610" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <state key="normal" title="−">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <color key="titleShadowColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="36"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="Buttons:" destination="MXG-Gg-3p4" eventType="touchUpInside" id="d8C-ik-Fl4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fkO-AU-Ru4"/>
                     </view>
                     <connections>
-                        <outlet property="clearOutlet" destination="TIX-GX-nem" id="Qdy-Ad-B70"/>
                         <outlet property="resultLabel" destination="Lfd-5m-N1s" id="yCi-bP-Hvl"/>
+                        <outletCollection property="buttonLabel" destination="wE9-Vm-Xue" collectionClass="NSMutableArray" id="tPJ-bL-vOT"/>
+                        <outletCollection property="buttonLabel" destination="xkU-pH-SdW" collectionClass="NSMutableArray" id="8VU-tN-Fny"/>
+                        <outletCollection property="buttonLabel" destination="arN-wf-HJc" collectionClass="NSMutableArray" id="yWJ-SH-izV"/>
+                        <outletCollection property="buttonLabel" destination="mpY-Qb-awq" collectionClass="NSMutableArray" id="MI5-5Z-RsK"/>
+                        <outletCollection property="buttonLabel" destination="U1l-4P-kZG" collectionClass="NSMutableArray" id="gdE-hD-Mc9"/>
+                        <outletCollection property="buttonLabel" destination="yjP-rM-bM7" collectionClass="NSMutableArray" id="eqi-gD-0U7"/>
+                        <outletCollection property="buttonLabel" destination="l0D-Az-IRB" collectionClass="NSMutableArray" id="Kzh-ha-8kK"/>
+                        <outletCollection property="buttonLabel" destination="P3i-sO-WRi" collectionClass="NSMutableArray" id="riQ-G2-n5t"/>
+                        <outletCollection property="buttonLabel" destination="jXo-HI-4Re" collectionClass="NSMutableArray" id="3O6-m1-hNI"/>
+                        <outletCollection property="buttonLabel" destination="Btp-Zp-WUV" collectionClass="NSMutableArray" id="h7x-cR-kVr"/>
+                        <outletCollection property="buttonLabel" destination="eIv-tB-dOa" collectionClass="NSMutableArray" id="uCS-L5-dSP"/>
+                        <outletCollection property="buttonLabel" destination="JFY-xM-iW1" collectionClass="NSMutableArray" id="MEo-Sg-AKM"/>
+                        <outletCollection property="buttonLabel" destination="jzI-Oz-QDY" collectionClass="NSMutableArray" id="ErW-86-Fp3"/>
+                        <outletCollection property="buttonLabel" destination="Avc-UY-7z4" collectionClass="NSMutableArray" id="w7P-Bs-PvH"/>
+                        <outletCollection property="buttonLabel" destination="V1f-h6-Wvg" collectionClass="NSMutableArray" id="jYn-aj-Ife"/>
+                        <outletCollection property="buttonLabel" destination="iyP-Qz-3jY" collectionClass="NSMutableArray" id="Yrd-1P-BGA"/>
+                        <outletCollection property="buttonLabel" destination="TIX-GX-nem" collectionClass="NSMutableArray" id="kU0-3G-OYa"/>
+                        <outletCollection property="buttonLabel" destination="rZk-Vz-1ta" collectionClass="NSMutableArray" id="ehL-Zy-Yf3"/>
+                        <outletCollection property="buttonLabel" destination="fwq-bb-C3M" collectionClass="NSMutableArray" id="Fpk-FE-I1l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aoi-ja-EVt" sceneMemberID="firstResponder"/>

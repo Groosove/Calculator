@@ -17,12 +17,13 @@ class ViewController: UIViewController {
 	var index: 			Int = 0;
 	
 	@IBOutlet weak var resultLabel: UILabel!
-	@IBOutlet weak var clearOutlet: UIButton!
-	
+
+	@IBOutlet var buttonLabel: [UIButton]!
 	func takeValue(_ index: Int,_ value: inout Int) {
-		if (index == 17 && resultLabel.text != "0") {
+		if (index == 17 && value != 0) {
 			value = -value
 		}
+		
 		if (index >= 0 && index <= 9 && resultLabel.text?.count != 12) {
 			value = value * 10 + index
 		}
@@ -39,7 +40,7 @@ class ViewController: UIViewController {
 		
 		result = leftValue + rightValue
 		if (sender.tag == 16 && result != 0) {
-			clearOutlet.setTitle("AC", for: .normal)
+			buttonLabel[16].setTitle("AC", for: .normal)
 			result = 0
 			leftValue = 0
 			rightValue = 0
@@ -49,7 +50,7 @@ class ViewController: UIViewController {
 
 		
 		if (result != 0) {
-			clearOutlet.setTitle("C", for: .normal)
+			buttonLabel[16].setTitle("C", for: .normal)
 		}
 		resultLabel.text = String(result)
 	}
@@ -58,7 +59,7 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 		resultLabel.text = "0"
-		clearOutlet.setTitle("AC", for: .normal)
+		buttonLabel[16].setTitle("AC", for: .normal)
 	}
 }
 
