@@ -43,6 +43,11 @@ class ViewController: UIViewController {
 		}
 		if ((0...9).contains(index) || index == 17) {
 			(oper == nil) ? takeValue(index, &leftValue) : takeValue(index, &rightValue)
+			resultLabel.text = String((oper == nil) ? leftValue : rightValue)
+			if (rightValue != 0) {
+				buttonLabel[oper!].backgroundColor = .systemOrange
+				buttonLabel[oper!].setTitleColor(.white, for: .normal)
+			}
 		}
 		if (oper != nil && index == 11) {
 			result = leftValue + rightValue
@@ -53,9 +58,8 @@ class ViewController: UIViewController {
 				case 15: result = leftValue / rightValue
 				default: oper = nil
 			}
-			
 			oper = nil
-			
+			resultLabel.text = String(result.rounded())
 		}
 		if (sender.tag == 16 && result != 0) {
 			buttonLabel[16].setTitle("AC", for: .normal)
@@ -68,7 +72,6 @@ class ViewController: UIViewController {
 		if (result != 0) {
 			buttonLabel[16].setTitle("C", for: .normal)
 		}
-		resultLabel.text = String(result.rounded())
 	}
 	
 	override func viewDidLoad() {
