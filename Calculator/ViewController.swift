@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
 
 	var result: 		Double = 0
-	var leftValue: 		Double = 0
 	var rightValue: 	Double = 0
 	var oper: 			Int? = nil
 	var index: 			Int = 0;
@@ -41,30 +40,36 @@ class ViewController: UIViewController {
 			buttonLabel[index].backgroundColor = .white
 			buttonLabel[index].setTitleColor(.orange, for: .normal)
 		}
-		if ((0...9).contains(index) || index == 17) {
-			(oper == nil) ? takeValue(index, &leftValue) : takeValue(index, &rightValue)
-			resultLabel.text = String((oper == nil) ? leftValue : rightValue)
-			if (rightValue != 0) {
+		
+		if (0...9).contains(index) || index == 17 {
+			(oper == nil) ? takeValue(index, &result) : takeValue(index, &rightValue)
+			resultLabel.text = String(Int((oper == nil) ? result : rightValue))
+			if (rightValue != 0 && oper != nil) {
 				buttonLabel[oper!].backgroundColor = .systemOrange
 				buttonLabel[oper!].setTitleColor(.white, for: .normal)
 			}
 		}
-		if (oper != nil && index == 11) {
-			result = leftValue + rightValue
+		
+		if oper != nil && index == 11 {
 			switch oper! {
-				case 12: result = leftValue + rightValue
-				case 13: result = leftValue - rightValue
-				case 14: result = leftValue * rightValue
-				case 15: result = leftValue / rightValue
+			case 12: result +=  rightValue
+			case 13: result -= rightValue
+			case 14: result *= rightValue
+			case 15: result /= rightValue
 				default: oper = nil
 			}
+			
+			resultLabel.text = (result == result.rounded()) ? String(Int(result)) : String(result)
+			if (resultLabel.text!.count > 12) {
+				let str = resultLabel.text! as NSString
+				resultLabel.text = str.substring(with: NSRange(location: 0, length: 12))
+			}
+			rightValue = 0
 			oper = nil
-			resultLabel.text = String(result.rounded())
 		}
 		if (sender.tag == 16 && result != 0) {
 			buttonLabel[16].setTitle("AC", for: .normal)
 			result = 0
-			leftValue = 0
 			rightValue = 0
 			resultLabel.text? = "0"
 		}
