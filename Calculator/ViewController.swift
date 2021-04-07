@@ -10,13 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+	var resultText:		String = "0"
 	var result: 		Double = 0
 	var rightValue: 	Double = 0
 	var oper: 			Int? = nil
 	var index: 			Int = 0;
 	
 	@IBOutlet weak var resultLabel: UILabel!
-
 	@IBOutlet var buttonLabel: [UIButton]!
 	func takeValue(_ index: Int,_ value: inout Double) {
 		if index == 17 && value != 0 {
@@ -31,6 +31,10 @@ class ViewController: UIViewController {
 	
 	@IBAction func Buttons(_ sender: UIButton) {
 		index = sender.tag
+		if (0...10).contains(index) && (resultText.count != 1 || index != 0) && resultText.filter { $0 == "," }.count {
+			resultText += (0...9).contains(index) ? String(index) : ","
+			print(resultText)
+		}
 		if (12...15).contains(index) {
 			oper = index
 			for i in (12...15) {
@@ -81,12 +85,9 @@ class ViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
 		resultLabel.text = "0"
 		buttonLabel.forEach { $0.layer.cornerRadius = $0.bounds.size.width / 2 }
-		
 		buttonLabel[0].layer.cornerRadius = buttonLabel[0].bounds.size.width / 5
-		buttonLabel[16].setTitle("AC", for: .normal)
 	}
 }
 
