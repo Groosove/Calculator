@@ -10,32 +10,51 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	var resultText:		String = "0"
+	var resultText:		String = ""
 	var result: 		Double = 0
 	var rightValue: 	Double = 0
 	var oper: 			Int? = nil
+	var second_oper:	Int? = nil
 	var index: 			Int = 0;
 	
 	@IBOutlet weak var resultLabel: UILabel!
 	@IBOutlet var buttonLabel: [UIButton]!
-	func takeValue(_ index: Int,_ value: inout Double) {
-		if index == 17 && value != 0 {
-			value = -value
+
+
+	func operation(oper: Int, left: Double, right: Double)-> String {
+		var result: String
+		switch oper {
+				case 12: result = String(left + right)
+		case 13: result = String(left - right)
+				case 14: result = String(left * right)
+		case 15: result = (right != 0) ? String(left / right) : "Ошибка"
+			default: result = ""
 		}
-		
-		if (0...9).contains(index) && resultLabel.text?.count != 12 {
-			value = value * 10 + Double(index)
+		if (result.count > 12) {
+			let str = result as NSString
+			result = str.substring(with: NSRange(location: 0, length: 12))
 		}
-		
+		return result
 	}
 	
 	@IBAction func Buttons(_ sender: UIButton) {
 		index = sender.tag
-		if (0...10).contains(index) && (resultText.count != 1 || index != 0) && resultText.filter { $0 == "," }.count {
-			resultText += (0...9).contains(index) ? String(index) : ","
-			print(resultText)
+		if (0...10).contains(index) && (resultText.count != 1 || index != 0) {
+			let count = resultText.filter { $0 == "," }.count;
+			resultText += (0...9).contains(index) ? String(index) : (count == 0) ? "," : ""
+			                                                                                                                                                              
+			if (rightValue != 0 && oper != nil) {
+				buttonLabel[oper!].backgroundColor = .systemOrange
+				buttonLabel[oper!].setTitleColor(.white, for: .normal)
+			}
 		}
 		if (12...15).contains(index) {
+			if oper != nil && resultText != "" && oper != index {
+				resultText = operation(oper: oper!, left: Double(resultText)!, right: rightValue)
+			} else if resultText != "" {
+				rightValue = Double(resultText)!
+				resultText = ""
+			}
 			oper = index
 			for i in (12...15) {
 				buttonLabel[i].backgroundColor = .systemOrange
@@ -43,42 +62,20 @@ class ViewController: UIViewController {
 			}
 			buttonLabel[index].backgroundColor = .white
 			buttonLabel[index].setTitleColor(.orange, for: .normal)
-		}
-		
-		if (0...9).contains(index) || index == 17 {
-			(oper == nil) ? takeValue(index, &result) : takeValue(index, &rightValue)
-			resultLabel.text = String(Int((oper == nil) ? result : rightValue))
-			if (rightValue != 0 && oper != nil) {
-				buttonLabel[oper!].backgroundColor = .systemOrange
-				buttonLabel[oper!].setTitleColor(.white, for: .normal)
-			}
-		}
-		
-		if oper != nil && index == 11 {
-			switch oper! {
-			case 12: result +=  rightValue
-			case 13: result -= rightValue
-			case 14: result *= rightValue
-			case 15: result /= rightValue
-				default: oper = nil
-			}
 			
-			resultLabel.text = (result == result.rounded()) ? String(Int(result)) : String(result)
-			if (resultLabel.text!.count > 12) {
-				let str = resultLabel.text! as NSString
-				resultLabel.text = str.substring(with: NSRange(location: 0, length: 12))
-			}
-			rightValue = 0
-			oper = nil
 		}
-		if (sender.tag == 16 && result != 0) {
+		
+		if (resultText != "") {
+			resultLabel.text = resultText
+		}
+		
+		if (sender.tag == 16 && resultText.count > 0) {
 			buttonLabel[16].setTitle("AC", for: .normal)
-			result = 0
-			rightValue = 0
+			resultText = ""
 			resultLabel.text? = "0"
 		}
 		
-		if (result != 0) {
+		if (resultLabel.text != "0") {
 			buttonLabel[16].setTitle("C", for: .normal)
 		}
 	}
